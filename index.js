@@ -15,9 +15,10 @@ let allowCrossDomain = function(req, res, next) {
 }
 app.use(allowCrossDomain);
 
-app.use(express.static(__dirname+"/website"))
 app.use(express.static(__dirname+"/client_bypass"))
-
+app.get("/", (req, res) => {
+	res.sendfile("index.html")
+})
 function testregex(string, regex) {
   var reg = new RegExp(regex);
   return(reg.test(string))
